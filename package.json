@@ -23,7 +23,9 @@
     "lint:fix": "eslint . --fix",
     "bootstrap": "pnpm install && pnpm run common:prepare",
     "common:cleanup": "rimraf node_modules",
-    "common:prepare": "husky install"
+    "common:prepare": "husky install",
+    "encode-fe-lint-scan": "encode-fe-lint scan",
+    "encode-fe-lint-fix": "encode-fe-lint fix"
   },
   "dependencies": {
     "@vscode/markdown-it-katex": "^1.0.3",
@@ -40,8 +42,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.3",
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
     "@iconify/vue": "^4.1.0",
     "@types/crypto-js": "^4.1.1",
     "@types/katex": "^0.16.0",
@@ -52,8 +52,7 @@
     "autoprefixer": "^10.4.13",
     "axios": "^1.3.4",
     "crypto-js": "^4.1.1",
-    "eslint": "^8.35.0",
-    "husky": "^8.0.3",
+    "encode-fe-lint": "^1.0.9",
     "less": "^4.1.3",
     "lint-staged": "^13.1.2",
     "markdown-it-link-attributes": "^4.0.1",
@@ -70,5 +69,11 @@
     "*.{ts,tsx,vue}": [
       "pnpm lint:fix"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "encode-fe-lint commit-file-scan",
+      "commit-msg": "encode-fe-lint commit-msg-scan"
+    }
   }
 }
