@@ -19,5 +19,5 @@ async function bootstrap() {
 
   app.mount('#app')
 }
-
+console.log('hello world')
 bootstrap()
